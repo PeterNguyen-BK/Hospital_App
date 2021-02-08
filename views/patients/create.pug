@@ -1,0 +1,51 @@
+extends ../layouts/common.pug
+block contents
+    .card-header.bg-primary.text-white.text-uppercase Add New Patient
+
+    if errors
+        each error in errors
+            .alert.alert-danger= error
+
+    form.row.g-3.m-5(action='/patients/create', method='POST')
+        .col-md-5
+            label.form-label First Name
+            input.form-control(name='fname', type='text', placeholder="Nguyen Van", value=values ? values.fname : '')
+        .col-md-5
+            label.form-label Last Name
+            input.form-control(name='lname', type='text', placeholder="A", value=values ? values.lname : '')
+        .col-md-2
+            label.form-label Kind of Patient
+            select.form-select(name='kindOfPatient')
+                option(selected='') Choose...
+                option(value='inpatient') Inpatient
+                option(value='outpatient') Outpatient
+        .col-md-6
+            label.form-label Phone Number
+            input.form-control(name='phone_no', type='text', placeholder="0967123456", value=values ? values.phone_no : '')
+        .col-md-4
+            label.form-label Date Of Birth
+            input.form-control(name='dob', type='date')
+        .col-md-2
+            label.form-label Gender
+            select.form-select(name='gender')
+                option(selected='') Choose...
+                option(value='male') Male
+                option(value='female') Female
+        .col-12
+            label.form-label Address
+            input.form-control(name='address', type='text', placeholder='Ho Chi Minh City')
+        b(style="margin-top:50px; text-decoration: underline solid;") Below information is of inpatient:
+        .col-12
+            label.form-label Diagnosis
+            input.form-control(name='diagnosis', type='text', placeholder='Perfect health with some minor mental issues')
+        .col-md-6
+            label.form-label Admission Date
+            input.form-control(name='admission_date', type='date')
+        .col-md-3
+            label.form-labelSick(style='margin-bottom:8px;') Room
+            input.form-control(name='sick_room', type='number', placeholder="1,2,3,...")
+        .col-md-3
+            label.form-label Fee
+            input.form-control(name='fee', type='number', placeholder="15000")
+        .col-12
+            button.btn.btn-primary(type='submit', style='margin-top:20px;') Add Patient

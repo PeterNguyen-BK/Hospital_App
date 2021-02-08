@@ -1,0 +1,70 @@
+extends ../layouts/common.pug
+block contents
+    if patientInfo.length == 10
+        .card.bg-light(style="width:700px; margin-left:auto; margin-right:auto; margin-top:100px;")
+            .card-header.bg-primary.text-white Patient Information
+            .card-body
+                .row.g-3
+                    .col-md-5
+                        b Name: 
+                        span= patientInfo[0].toUpperCase() + " " + patientInfo[1].toUpperCase()
+                    .col-md-5
+                        b Phone Number: 
+                        span= patientInfo[2]
+                .row.g-3
+                    .col-md-5
+                        b Start Date: 
+                        span= new Date(patientInfo[3]).toLocaleDateString()
+                    .col-md-6
+                        b End Date: 
+                        span= new Date(patientInfo[4]).toLocaleDateString()
+                .row.g-3
+                    .col-md-6
+                        b Sick Room: 
+                        span= patientInfo[5]
+                .row
+                    .col-md-12
+                        b Diagnostic: 
+                        span= patientInfo[6]
+                .row
+                    .col-md-12
+                        b Result: 
+                        span= patientInfo[7]
+                .row
+                    .col-md-6
+                        b Medication: 
+                        span= patientInfo[8]
+    else if patientInfo.length == 7
+        .card.bg-light(style="width:900px; margin-left:auto; margin-right:auto; margin-top:100px;")
+            .card-header.bg-primary.text-white Patient Information
+            .card-body
+                .row.g-3
+                    .col-md-6
+                        b Name: 
+                        span= patientInfo[0].toUpperCase() + " " + patientInfo[1].toUpperCase()
+                    .col-md-5
+                        b Phone Number: 
+                        span= patientInfo[2]
+                .row.g-3
+                    .col-md-6
+                        b Exam Date: 
+                        span= new Date(patientInfo[3]).toUTCString()
+                    .col-md-6
+                        b Second Exam Date: 
+                        span= new Date(patientInfo[4]).toUTCString()
+                .row.g-3
+                    .col-md-12
+                        b Diagnosis: 
+                        span= patientInfo[5]
+    else
+        .card.bg-light(style="width:900px; margin-left:auto; margin-right:auto; margin-top:100px;")
+            .card-header.bg-primary.text-white Patient Information
+            .card-body
+                .row.g-3
+                    .col-md-6
+                        b Name: 
+                        span= patientInfo[0].toUpperCase() + " " + patientInfo[1].toUpperCase()
+                    .col-md-5
+                        b Phone Number: 
+                        span= patientInfo[2]
+                    span This is new patient!

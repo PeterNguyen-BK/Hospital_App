@@ -1,0 +1,31 @@
+extends ../layouts/common.pug
+block contents
+    .card-header.bg-primary.text-white.text-uppercase Patients
+    
+    h2.p-2.m-1 Searching
+    form.m-1(action='/patients/search', method='GET', class='row g-3')
+        .col-5
+            input(type='text', name='q', class='form-control')   
+        .col-6                               
+            button(class='btn btn-primary mb-3') Search
+    a.btn.btn-primary.m-3(href='/patients/create') Add New Patient
+    .patients.my-3
+        if patients.length > 0
+            table.table.table-bordered.table-striped
+                thread
+                    tr.bg-info.text-black.table-info
+                        th  Name
+                        th  Birth Date
+                        th  Gender
+                        th  
+                tbody
+                    each patient in patients
+                        tr
+                            td= patient[0] + " " + patient[1]
+                            td= new Date(patient[2]).toLocaleDateString()
+                            td= patient[3]
+                            td
+                                a.btn.btn-info(href='/patients/' +  patient[4]) View
+        else
+            p Patient Not Found!
+    

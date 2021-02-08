@@ -1,0 +1,24 @@
+extends ../layouts/common.pug
+block contents
+    .card-header.bg-primary.text-white Patients Of Doctor
+    .d-flex.align-items-center
+        form(action='/doctors/search', method='GET', style="margin-left: 180px; margin-top: 20px;")
+            input.form-control(type='text', name='q', style="width: 400px; margin-bottom: 20px;")
+            button.btn.btn-primary Search
+    if doctors.length > 0 && typeof(doctors[0]) != 'boolean'
+        table.table(style="width: 1200px; margin-left: auto; margin-right: auto;")
+            thread
+                tr
+                    th Name
+                    th Phone Number
+                    th Date of Birth
+            tbody
+            each patient in doctors
+                tr
+                    td= patient[0] + " " + patient[1]
+                    td= patient[2]
+                    td= new Date(patient[3]).toLocaleDateString()
+    else if typeof(doctors[0]) == 'boolean'
+    
+    else
+        p Doctor Not Found.
