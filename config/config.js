@@ -1,5 +1,7 @@
 const oracledb = require('oracledb');
 
+oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+
 var config = {
     user: "Manager",
     password: "nguyenthuan123",

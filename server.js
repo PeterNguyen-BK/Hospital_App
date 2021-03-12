@@ -3,6 +3,7 @@ const patientRoute = require('./routes/patient.route');
 const doctorRoute = require('./routes/doctor.route');
 const loginRoute = require('./routes/login.route');
 const paymentRoute = require('./routes/payment.route');
+const apiPatientRoute = require('./api/routes/patient.route');
 
 const loginMiddleware = require('./middlewares/login.middleware');
 const cookieParser = require('cookie-parser');
@@ -26,6 +27,8 @@ app.use('/login', loginRoute)
 app.use('/patients', loginMiddleware.requireLogin, patientRoute);
 app.use('/doctors', loginMiddleware.requireLogin, doctorRoute);
 app.use('/payment', loginMiddleware.requireLogin, paymentRoute);
+
+app.use('/api/patient', apiPatientRoute);
 
 app.listen(5000, function() {
     console.log('Server is running...');

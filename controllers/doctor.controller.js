@@ -25,12 +25,14 @@ module.exports.search = async function(req, res) {
     FROM patient, DOCTOR, EMPLOYEE\
     WHERE DOCTOR.DCODE = EMPLOYEE.ECODE AND patient.DOC_CODE = DOCTOR.DCODE'
     let result = await DB.Run(sql, [], false);
-    var lstPatient = result.rows.filter(function(patient) {
-        fname = patient[4].concat(" ");
-        doctorName = fname.concat(patient[5]);
+    console.log(result.rows);
+    var listDoctors = result.rows.filter(function(patient) {
+        fname = patient.FNAME_1.concat(" ");
+        doctorName = fname.concat(patient.LNAME_1);
+        // console.log(doctorName);
         return doctorName.toLowerCase().indexOf(q.toLowerCase()) != -1;
     });
-    doctors = lstPatient.map(x => x.slice(0,4)); 
-   
+    // res.send(doctors);
+    doctors = listDoctors;
     res.render('doctors/index', doctors)
 };

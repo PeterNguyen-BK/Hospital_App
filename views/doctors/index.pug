@@ -5,7 +5,7 @@ block contents
         form(action='/doctors/search', method='GET', style="margin-left: 180px; margin-top: 20px;")
             input.form-control(type='text', name='q', style="width: 400px; margin-bottom: 20px;")
             button.btn.btn-primary Search
-    if doctors.length > 0 && typeof(doctors[0]) != 'boolean'
+    if doctors.length > 0 && typeof(doctors[0]) !== "boolean"
         table.table(style="width: 1200px; margin-left: auto; margin-right: auto;")
             thread
                 tr
@@ -15,10 +15,9 @@ block contents
             tbody
             each patient in doctors
                 tr
-                    td= patient[0] + " " + patient[1]
-                    td= patient[2]
-                    td= new Date(patient[3]).toLocaleDateString()
-    else if typeof(doctors[0]) == 'boolean'
-    
+                    td= patient.FNAME + " " + patient.LNAME
+                    td= patient.PHONE_NO
+                    td= new Date(patient.DOB).toLocaleDateString()
+    else if typeof(doctors[0] === "boolean")
     else
         p Doctor Not Found.
